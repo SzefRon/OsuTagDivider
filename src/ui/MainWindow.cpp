@@ -3,23 +3,21 @@
 void MainWindow::try_generate_and_save_beatmaps()
 {
     if (current_beatmap.has_value()) {
-        auto tag_beatmaps = BeatmapProcessor::divide_for_tag(
-            current_beatmap.value(), difficulty_settings_panel.get_difficulty_name(),
-            difficulty_settings_panel.get_settings(), tag_division_settings_panel.get_settings()
-        );
+        this->set_sensitive(false);
+        generate_button.set_label("Generating...");
+        std::thread thr([&](){
+            auto tag_beatmaps = BeatmapProcessor::divide_for_tag(
+                current_beatmap.value(), difficulty_settings_panel.get_difficulty_name(),
+                difficulty_settings_panel.get_settings(), tag_division_settings_panel.get_settings()
+            );
 
-        auto ret = BeatmapProcessor::batch_save(
-            current_beatmap.value(), tag_beatmaps, beatmap_paths_panel.get_output_folder()
-        );
+            auto ret = BeatmapProcessor::batch_save(
+                current_beatmap.value(), tag_beatmaps, beatmap_paths_panel.get_output_folder()
+            );
+            dispatcher.emit();
+        });
 
-        if (ret.empty()) {
-            Gtk::MessageDialog dialog(*this, "Success!", false, Gtk::MESSAGE_INFO);
-            dialog.run();
-        }
-        else {
-            Gtk::MessageDialog dialog(*this, ret, false, Gtk::MESSAGE_ERROR);
-            dialog.run();
-        }
+        thr.detach();
     }
     else {
         Gtk::MessageDialog dialog(*this, "No beatmap loaded!", false, Gtk::MESSAGE_ERROR);
@@ -71,6 +69,19 @@ MainWindow::MainWindow()
     });
 
     generate_button.signal_clicked().connect([&](){ try_generate_and_save_beatmaps(); });
+
+    dispatcher.connect([&](){
+        this->set_sensitive(true);
+        generate_button.set_label("The OwO button that generates the maps");
+        if (generate_exit_message.empty()) {
+            Gtk::MessageDialog dialog(*this, "Success!", false, Gtk::MESSAGE_INFO);
+            dialog.run();
+        }
+        else {
+            Gtk::MessageDialog dialog(*this, generate_exit_message, false, Gtk::MESSAGE_ERROR);
+            dialog.run();
+        }
+    });
 
     add(box);
     show_all_children();

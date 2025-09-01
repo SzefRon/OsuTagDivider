@@ -4,7 +4,9 @@
 #include <gtkmm/box.h>
 #include <gtkmm/button.h>
 #include <gtkmm/messagedialog.h>
+#include <glibmm/dispatcher.h>
 #include <iostream>
+#include <thread>
 
 #include "ui/BeatmapPathsPanel.hpp"
 #include "ui/DifficultySettingsPanel.hpp"
@@ -25,6 +27,9 @@ private:
     Gtk::Button generate_button;
 
     std::optional<Beatmap> current_beatmap;
+
+    Glib::Dispatcher dispatcher;
+    std::string generate_exit_message;
 
     void try_generate_and_save_beatmaps();
     void try_load_beatmap();
