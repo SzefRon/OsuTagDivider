@@ -15,7 +15,7 @@ void BeatmapPathsPanel::set_input_default_folder()
         auto home_path = std::getenv("HOME");
         if (home_path) {
             default_folder = home_path;
-            default_folder /= ".loca";
+            default_folder /= ".local";
             default_folder /= "share";
         }
     #endif
