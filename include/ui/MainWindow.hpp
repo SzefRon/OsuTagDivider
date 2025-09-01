@@ -28,7 +28,8 @@ private:
 
     std::optional<Beatmap> current_beatmap;
 
-    Glib::Dispatcher dispatcher;
+    Glib::Dispatcher dispatcher_saving;
+    Glib::Dispatcher dispatcher_finish;
     std::string generate_exit_message;
 
     void try_generate_and_save_beatmaps();
