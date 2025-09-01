@@ -4,7 +4,7 @@
 #include <cstdlib>
 
 #include <gtkmm/frame.h>
-#include <gtkmm/Grid.h>
+#include <gtkmm/grid.h>
 #include <gtkmm/label.h>
 #include <gtkmm/separator.h>
 #include <gtkmm/filechooserbutton.h>
