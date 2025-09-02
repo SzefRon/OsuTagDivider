@@ -17,12 +17,16 @@
 #include "ui/DifficultySettingsPanel.hpp"
 #include "ui/TagDivisionSettingsPanel.hpp"
 
+#include "logic/ConfigManager.hpp"
 #include "logic/Beatmap.hpp"
 #include "logic/BeatmapProcessor.hpp"
 
 class MainWindow : public Gtk::ApplicationWindow
 {
 private:
+    ConfigManager config_manager;
+    Glib::RefPtr<Gtk::CssProvider> css_provider;
+
     Gtk::Box box;
 
     BeatmapPathsPanel beatmap_paths_panel;
@@ -42,6 +46,8 @@ private:
 
     void try_generate_and_save_beatmaps();
     void try_load_beatmap();
+
+    void load_config_theme();
 public:
     MainWindow();
     ~MainWindow() = default;

@@ -21,12 +21,15 @@ private:
 
     Gtk::Label output_folder_label;
     Gtk::FileChooserButton output_folder_picker;
-
-    void set_input_default_folder();
 public:
     BeatmapPathsPanel();
 
     sigc::signal<void> signal_file_picked;
+
+    void set_default_input_path(std::filesystem::path path)
+    {
+        input_file_picker.set_current_folder(path.string());
+    }
 
     std::string get_current_input_path() { return input_file_picker.get_filename(); }
     std::string get_output_folder() { return output_folder_picker.get_filename(); }

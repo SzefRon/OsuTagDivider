@@ -1,27 +1,5 @@
 #include "ui/BeatmapPathsPanel.hpp"
 
-void BeatmapPathsPanel::set_input_default_folder()
-{
-    std::filesystem::path default_folder;
-    #ifdef _WIN32
-        auto local_path = std::getenv("localappdata");
-        if (local_path) {
-            default_folder = local_path;
-            default_folder /= "osu!";
-            default_folder /= "Songs";
-        }
-    #endif
-    #ifdef __linux__
-        auto home_path = std::getenv("HOME");
-        if (home_path) {
-            default_folder = home_path;
-            default_folder /= ".local";
-            default_folder /= "share";
-        }
-    #endif
-    input_file_picker.set_current_folder(default_folder.string());
-}
-
 BeatmapPathsPanel::BeatmapPathsPanel()
     : Gtk::Frame("Beatmap Paths"),
       input_file_label("Input beatmap file"),
@@ -39,7 +17,6 @@ BeatmapPathsPanel::BeatmapPathsPanel()
     osu_file_filter->set_name("osu! Beatmap Files (*.osu)");
     osu_file_filter->add_pattern("*.osu");
     input_file_picker.add_filter(osu_file_filter);
-    set_input_default_folder();
 
     grid.set_border_width(10);
     grid.set_row_spacing(10);

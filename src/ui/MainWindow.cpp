@@ -36,20 +36,28 @@ void MainWindow::try_load_beatmap()
     }
 }
 
-MainWindow::MainWindow()
-    : box(Gtk::ORIENTATION_VERTICAL, 10),
-      generate_button("The OwO button that generates the maps"),
-      theme_combo(false),
-      theme_label("Theme")
+void MainWindow::load_config_theme()
 {
-    auto css_provider = Gtk::CssProvider::create();
-    css_provider->load_from_path("data/style.css");
+    std::filesystem::path theme_path = "data";
+    theme_path /= config_manager.get_config().selected_theme + ".css";
+
+    css_provider = Gtk::CssProvider::create();
+    css_provider->load_from_path(theme_path.string());
 
     Gtk::StyleContext::add_provider_for_screen(
         Gdk::Screen::get_default(),
         css_provider,
         GTK_STYLE_PROVIDER_PRIORITY_APPLICATION
     );
+}
+
+MainWindow::MainWindow()
+    : box(Gtk::ORIENTATION_VERTICAL, 10),
+      generate_button("The OwO button that generates the maps"),
+      theme_combo(false),
+      theme_label("Theme")
+{
+    load_config_theme();
 
     theme_label.set_name("fancy_text");
 
@@ -77,9 +85,11 @@ MainWindow::MainWindow()
 
     theme_combo.set_size_request(100, -1);
 
-    theme_combo.append("Light");
-    theme_combo.append("Dark");
-    theme_combo.set_active_text("Theme");
+    theme_combo.append("light");
+    theme_combo.append("dark");
+    theme_combo.set_active_text(config_manager.get_config().selected_theme);
+
+    beatmap_paths_panel.set_default_input_path(config_manager.get_config().default_path);
 
     // --- SIGNALS ---
 
@@ -118,6 +128,11 @@ MainWindow::MainWindow()
             Gtk::MessageDialog dialog(*this, generate_exit_message, false, Gtk::MESSAGE_ERROR);
             dialog.run();
         }
+    });
+
+    theme_combo.signal_changed().connect([&](){
+        config_manager.change_theme(theme_combo.get_active_text());
+        load_config_theme();
     });
 
     add(box);
