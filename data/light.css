@@ -12,6 +12,11 @@
 
 @define-color bg-col #FFD4DB;
 
+label {
+    text-shadow: none;
+    color: @text-col;
+}
+
 #main_frame > border {
     border-image: linear-gradient(
         -225deg, 
@@ -48,6 +53,10 @@ filechooserbutton > button {
     background-color: @bg-widget;
 }
 
+filechooserbutton.file > button {
+    background-color: @bg-widget;
+}
+
 button {
     background-image: none;
     background-color: @bg-widget;
@@ -69,13 +78,14 @@ button:active {
 
 spinbutton.horizontal {
     border-image: linear-gradient(
-        45deg, #ffffff00, #ffffff00
+        45deg, @bg-widget, @bg-widget
     ) 1;
     border-width: 4px;
+    color: @text-col;
 }
 
-spinbutton.horizontal:backdrop {
-    color:#999999;
+spinbutton.horizontal:backdrop, spinbutton.horizontal:disabled {
+    opacity: 0.5;
 }
 
 spinbutton.horizontal:focus {
@@ -87,11 +97,14 @@ spinbutton.horizontal:focus {
 }
 
 entry {
+    background-color: @bg-widget;
     border-image: linear-gradient(
-        45deg, #ffffff00, #ffffff00
+        45deg, @bg-widget, @bg-widget
     ) 1;
     border-width: 4px;
     box-shadow: none;
+    color: @text-col;
+    text-shadow: none;
 }
 
 entry:focus {
@@ -102,7 +115,7 @@ entry:focus {
 }
 
 entry:backdrop {
-    color: #999999;
+    opacity: 0.6;
 }
 
 entry:disabled {
@@ -110,13 +123,20 @@ entry:disabled {
 }
 
 #label_inactive {
-    color: #999999;
+    opacity: 0.6;
 }
 
 radiobutton > radio {
     outline: none;
     box-shadow: none;
     border: none;
+}
+
+radio {
+    border-color: @bg-widget;
+    border-image: none;
+    background-image: none;
+    background-color: @bg-widget;
 }
 
 radio:checked {
@@ -143,7 +163,7 @@ scale > value {
 }
 
 scale:backdrop > value {
-    color: #999999
+    opacity: 0.6;
 }
 
 scale > contents > trough {
@@ -188,4 +208,7 @@ window {
 
 * {
     outline: none;
+    text-shadow: none;
+    box-shadow: none;
+    -gtk-icon-shadow: none;
 }

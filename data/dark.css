@@ -1,16 +1,21 @@
-@define-color grad1 #FF8AF3;
-@define-color grad2 #ff5d5a;
+@define-color grad1 #00ff00;
+@define-color grad2 #00ff00;
 
-@define-color text-main #fff7f6;
-@define-color text-shadow #ff625f;
+@define-color text-main #00ff00;
+@define-color text-shadow #00ff00;
 
-@define-color bg-widget #ffffff;
-@define-color bg-widget-hov #fff5f6;
-@define-color bg-widget-click #ffecef;
+@define-color bg-widget #00ff00;
+@define-color bg-widget-hov #00ff00;
+@define-color bg-widget-click #00ff00;
 
-@define-color text-col #2E3436;
+@define-color text-icon-col #00ff00;
 
-@define-color bg-col #000000;
+@define-color bg-col #00ff00;
+
+label {
+    text-shadow: none;
+    color: @text-icon-col;
+}
 
 #main_frame > border {
     border-image: linear-gradient(
@@ -44,10 +49,6 @@ frame > border {
     border-width: 4px;
 }
 
-filechooserbutton > button {
-    background-color: @bg-widget;
-}
-
 button {
     background-image: none;
     background-color: @bg-widget;
@@ -57,6 +58,7 @@ button {
     border-width: 4px;
     border-radius: 0px;
     box-shadow: none;
+    color: @text-icon-col;
 }
 
 button:hover {
@@ -69,13 +71,14 @@ button:active {
 
 spinbutton.horizontal {
     border-image: linear-gradient(
-        45deg, #ffffff00, #ffffff00
+        45deg, @bg-widget, @bg-widget
     ) 1;
     border-width: 4px;
+    color: @text-icon-col;
 }
 
-spinbutton.horizontal:backdrop {
-    color:#999999;
+spinbutton.horizontal:backdrop, spinbutton.horizontal:disabled {
+    opacity: 0.5;
 }
 
 spinbutton.horizontal:focus {
@@ -87,11 +90,14 @@ spinbutton.horizontal:focus {
 }
 
 entry {
+    background-color: @bg-widget;
     border-image: linear-gradient(
-        45deg, #ffffff00, #ffffff00
+        45deg, @bg-widget, @bg-widget
     ) 1;
     border-width: 4px;
     box-shadow: none;
+    color: @text-icon-col;
+    text-shadow: none;
 }
 
 entry:focus {
@@ -102,7 +108,7 @@ entry:focus {
 }
 
 entry:backdrop {
-    color: #999999;
+    opacity: 0.6;
 }
 
 entry:disabled {
@@ -110,13 +116,21 @@ entry:disabled {
 }
 
 #label_inactive {
-    color: #999999;
+    opacity: 0.6;
 }
 
 radiobutton > radio {
     outline: none;
     box-shadow: none;
     border: none;
+}
+
+radio {
+    border-color: @bg-widget;
+    border-image: none;
+    background-image: none;
+    background-color: @bg-widget;
+    color: @bg-widget;
 }
 
 radio:checked {
@@ -139,11 +153,11 @@ radio:not(:checked):active {
 }
 
 scale > value {
-    color: @text-col;
+    color: @text-icon-col;
 }
 
 scale:backdrop > value {
-    color: #999999
+    opacity: 0.6;
 }
 
 scale > contents > trough {
@@ -178,6 +192,10 @@ scale > contents > trough > slider:active {
     background-color: @bg-widget-click;
 }
 
+combobox > box.linked > button.combo {
+    background-color: red;
+}
+
 window {
     /* background-image:linear-gradient(
         45deg, #FFD4DB
@@ -188,4 +206,8 @@ window {
 
 * {
     outline: none;
+    text-shadow: none;
+    box-shadow: none;
+    -gtk-icon-shadow: none;
+    color: @text-icon-col;
 }
