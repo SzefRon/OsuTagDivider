@@ -84,9 +84,10 @@ MainWindow::MainWindow()
     generate_button.set_hexpand(true);
 
     theme_combo.set_size_request(100, -1);
+    for (const auto &theme : config_manager.get_themes()) {
+        theme_combo.append(theme);
+    }
 
-    theme_combo.append("light");
-    theme_combo.append("dark");
     theme_combo.set_active_text(config_manager.get_config().selected_theme);
 
     beatmap_paths_panel.set_default_input_path(config_manager.get_config().default_path);

@@ -24,6 +24,8 @@ std::filesystem::path ConfigManager::get_default_paths()
 
 ConfigManager::ConfigManager()
 {
+    if (!std::filesystem::exists("data")) return;
+
     mINI::INIFile file("data/config.ini");
     mINI::INIStructure data;
     file.read(data);
@@ -48,6 +50,13 @@ ConfigManager::ConfigManager()
     }
 
     bool ret = file.generate(data);
+
+    for (const auto& entry : std::filesystem::directory_iterator("data")) {
+        if (entry.is_regular_file() && entry.path().extension() == ".css") {
+            auto test = entry.path().filename().replace_extension("");
+            available_themes.push_back(test.string());
+        }
+    }
 }
 
 void ConfigManager::change_theme(const std::string &theme_name)

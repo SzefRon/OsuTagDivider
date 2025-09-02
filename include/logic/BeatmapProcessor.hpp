@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <memory>
+#include <algorithm>
 
 #include "logic/Beatmap.hpp"
 #include "logic/TagDivisionSettings.hpp"
