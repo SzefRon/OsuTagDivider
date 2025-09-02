@@ -5,6 +5,9 @@
 #include <gtkmm/button.h>
 #include <gtkmm/messagedialog.h>
 #include <glibmm/dispatcher.h>
+#include <gtkmm/cssprovider.h>
+#include <gtkmm/stylecontext.h>
+#include <gtkmm/settings.h>
 #include <iostream>
 #include <thread>
 

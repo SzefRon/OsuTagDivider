@@ -31,6 +31,9 @@ BeatmapPathsPanel::BeatmapPathsPanel()
       sep1(Gtk::ORIENTATION_VERTICAL), sep2(Gtk::ORIENTATION_VERTICAL), sep3(Gtk::ORIENTATION_VERTICAL)
 {
     set_label_align(Gtk::ALIGN_CENTER, Gtk::ALIGN_CENTER);
+    set_name("main_frame");
+    get_label_widget()->set_margin_start(10);
+    get_label_widget()->set_margin_end(10);
 
     auto osu_file_filter = Gtk::FileFilter::create();
     osu_file_filter->set_name("osu! Beatmap Files (*.osu)");

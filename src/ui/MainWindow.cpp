@@ -2,27 +2,21 @@
 
 void MainWindow::try_generate_and_save_beatmaps()
 {
-    if (current_beatmap.has_value()) {
-        this->set_sensitive(false);
-        generate_button.set_label("Generating beatmaps...");
-        std::thread thr([&](){
-            auto tag_beatmaps = BeatmapProcessor::divide_for_tag(
-                current_beatmap.value(), difficulty_settings_panel.get_difficulty_name(),
-                difficulty_settings_panel.get_settings(), tag_division_settings_panel.get_settings()
-            );
-            dispatcher_saving.emit();
-            auto ret = BeatmapProcessor::batch_save(
-                current_beatmap.value(), tag_beatmaps, beatmap_paths_panel.get_output_folder()
-            );
-            dispatcher_finish.emit();
-        });
+    this->set_sensitive(false);
+    generate_button.set_label("Generating beatmaps...");
+    std::thread thr([&](){
+        auto tag_beatmaps = BeatmapProcessor::divide_for_tag(
+            current_beatmap.value(), difficulty_settings_panel.get_difficulty_name(),
+            difficulty_settings_panel.get_settings(), tag_division_settings_panel.get_settings()
+        );
+        dispatcher_saving.emit();
+        auto ret = BeatmapProcessor::batch_save(
+            current_beatmap.value(), tag_beatmaps, beatmap_paths_panel.get_output_folder()
+        );
+        dispatcher_finish.emit();
+    });
 
-        thr.detach();
-    }
-    else {
-        Gtk::MessageDialog dialog(*this, "No beatmap loaded!", false, Gtk::MESSAGE_ERROR);
-        dialog.run();
-    }
+    thr.detach();
 }
 
 void MainWindow::try_load_beatmap()
@@ -46,9 +40,21 @@ MainWindow::MainWindow()
     : box(Gtk::ORIENTATION_VERTICAL, 10),
       generate_button("The OwO button that generates the maps")
 {
+    auto css_provider = Gtk::CssProvider::create();
+    css_provider->load_from_path("data/style.css");
+
+    Gtk::StyleContext::add_provider_for_screen(
+        Gdk::Screen::get_default(),
+        css_provider,
+        GTK_STYLE_PROVIDER_PRIORITY_APPLICATION
+    );
+
+    generate_button.set_name("generate_button");
+
     set_default_size(600, 600);
     // set_resizable(false);
     set_border_width(10);
+    set_title("Osu Tag Divider");
 
     box.set_homogeneous(false);
     
@@ -69,15 +75,17 @@ MainWindow::MainWindow()
     });
 
     generate_button.signal_clicked().connect([&](){
-        auto player_amount = tag_division_settings_panel.get_settings().player_amount;
-        if (player_amount >= 15) {
-            Gtk::MessageDialog dialog(*this, "For each player the tool will create a separate file.\nAre you sure you want to generate " + std::to_string(player_amount) + " beatmaps?", 
-                false, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL);
-            auto response = dialog.run();
-            if (response == Gtk::RESPONSE_OK) try_generate_and_save_beatmaps();
+        if (current_beatmap.has_value()) {
+            auto player_amount = tag_division_settings_panel.get_settings().player_amount;
+            if (player_amount >= 15) {
+                Gtk::MessageDialog dialog(*this, "For each player the tool will create a separate file.\nAre you sure you want to generate " + std::to_string(player_amount) + " beatmaps?", 
+                    false, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL);
+                auto response = dialog.run();
+                if (response == Gtk::RESPONSE_OK) try_generate_and_save_beatmaps();
+            }
+            else
+                try_generate_and_save_beatmaps();
         }
-        else
-            try_generate_and_save_beatmaps();
     });
 
     dispatcher_saving.connect([&](){

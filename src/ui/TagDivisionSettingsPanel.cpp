@@ -10,6 +10,9 @@ TagDivisionSettingsPanel::TagDivisionSettingsPanel()
       n_label("N amount")
 {
     set_label_align(Gtk::ALIGN_CENTER, Gtk::ALIGN_CENTER);
+    set_name("main_frame");
+    get_label_widget()->set_margin_start(10);
+    get_label_widget()->set_margin_end(10);
 
     grid.set_border_width(10);
     grid.set_row_spacing(10);
@@ -24,6 +27,8 @@ TagDivisionSettingsPanel::TagDivisionSettingsPanel()
     tag_mode_box.set_border_width(10);
     tag_mode_frame.add(tag_mode_box);
     tag_mode_frame.set_label_align(Gtk::ALIGN_CENTER);
+    tag_mode_frame.get_label_widget()->set_margin_start(5);
+    tag_mode_frame.get_label_widget()->set_margin_end(5);
 
     n_spinner.set_range(1.0, (1 << 16) - 1);
     n_spinner.set_digits(0);
@@ -67,7 +72,10 @@ TagDivisionSettingsPanel::TagDivisionSettingsPanel()
     });
 
     every_n_notes_radio_button.signal_toggled().connect([&](){
-        n_spinner.set_sensitive(every_n_notes_radio_button.get_active());
+        bool state = every_n_notes_radio_button.get_active();
+        n_spinner.set_sensitive(state);
+        if (state) n_label.set_name("label_active");
+        else n_label.set_name("label_inactive");
     });
 
     n_spinner.signal_value_changed().connect([&](){ 
@@ -76,6 +84,7 @@ TagDivisionSettingsPanel::TagDivisionSettingsPanel()
 
     player_amount_spinner.set_value(2.0);
     every_new_combo_radio_button.set_active(true);
+    n_label.set_name("label_inactive");
     n_spinner.set_value(1.0);
 
     add(grid);

@@ -19,6 +19,7 @@ FetchContent_MakeAvailable(googletest)
 
 file(GLOB_RECURSE TEST_SOURCES ${CMAKE_SOURCE_DIR}/tests/*.cpp)
 file(COPY ${CMAKE_SOURCE_DIR}/tests/test_data DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${CMAKE_SOURCE_DIR}/data DESTINATION ${CMAKE_BINARY_DIR})
 
 include_directories(${GTK3_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
 link_directories(${GTK3_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})
@@ -30,7 +31,13 @@ file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 
 add_library(sources ${SOURCES})
 
-add_executable(OsuTagDivider ${CMAKE_SOURCE_DIR}/main.cpp)
+if (WIN32)
+    set(APP_ICON ${CMAKE_SOURCE_DIR}/icon_data/appico.rc)
+    add_executable(OsuTagDivider WIN32 ${APP_ICON} ${CMAKE_SOURCE_DIR}/main.cpp)
+else()
+    add_executable(OsuTagDivider ${CMAKE_SOURCE_DIR}/main.cpp)
+endif()
+
 target_link_libraries(${PROJECT_NAME} sources ${GTK3_LIBRARIES} ${GTKMM_LIBRARIES})
 
 add_executable(UnitTests ${TEST_SOURCES})

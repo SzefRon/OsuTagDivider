@@ -10,6 +10,9 @@ DifficultySettingsPanel::DifficultySettingsPanel()
       ar_label("AR")
 {
     set_label_align(Gtk::ALIGN_CENTER, Gtk::ALIGN_CENTER);
+    set_name("main_frame");
+    get_label_widget()->set_margin_start(10);
+    get_label_widget()->set_margin_end(10);
 
     grid.set_border_width(10);
     grid.set_row_spacing(10);
