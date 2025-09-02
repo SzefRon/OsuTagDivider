@@ -1,28 +1,32 @@
-@define-color grad1 #00ff00;
-@define-color grad2 #00ff00;
+@define-color grad_stop_1 #000000;
+@define-color grad_stop_2 #000000;
 
-@define-color text-main #00ff00;
-@define-color text-shadow #00ff00;
+@define-color panel-text #000000;
+@define-color panel-text-shadow #000000;
 
-@define-color bg-widget #00ff00;
-@define-color bg-widget-hov #00ff00;
-@define-color bg-widget-click #00ff00;
+@define-color widget-bg #000000;
+@define-color widget-bg-hover #000000;
+@define-color widget-bg-click #000000;
 
-@define-color text-icon-col #00ff00;
+@define-color text-icon-col #000000;
 
-@define-color bg-col #00ff00;
+@define-color window-bg #000000;
 
 label {
     text-shadow: none;
     color: @text-icon-col;
 }
 
+label:backdrop {
+    opacity: 0.6;
+}
+
 #main_frame > border {
     border-image: linear-gradient(
         -225deg, 
-        @grad1, @grad2,
-        @grad1, @grad2,
-        @grad1, @grad2
+        @grad_stop_1, @grad_stop_2,
+        @grad_stop_1, @grad_stop_2,
+        @grad_stop_1, @grad_stop_2
         ) 1;
     border-width: 8px;
 }
@@ -30,30 +34,30 @@ label {
 #main_frame > label, #fancy_text {
     font-size: large;
     font-weight: bold;
-    color: @text-main;
-    text-shadow: @text-shadow 0px 0px 3px,
-    @text-shadow 0px 0px 3px,
-    @text-shadow 0px 0px 3px,
-    @text-shadow 0px 0px 3px,
-    @text-shadow 0px 0px 3px;
+    color: @panel-text;
+    text-shadow: @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px;
 }
 
 #main_frame > label:backdrop {
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 frame > border {
     border-image: linear-gradient(
-        45deg, @grad1, @grad2
+        45deg, @grad_stop_1, @grad_stop_2
     ) 1;
     border-width: 4px;
 }
 
 button {
     background-image: none;
-    background-color: @bg-widget;
+    background-color: @widget-bg;
     border-image: linear-gradient(
-        45deg, @grad1, @grad2
+        45deg, @grad_stop_1, @grad_stop_2
     ) 1;
     border-width: 4px;
     border-radius: 0px;
@@ -62,37 +66,41 @@ button {
 }
 
 button:hover {
-    background-color: @bg-widget-hov;
+    background-color: @widget-bg-hover;
 }
 
 button:active {
-    background-color: @bg-widget-click;
+    background-color: @widget-bg-click;
+}
+
+button:backdrop {
+    opacity: 0.6;
 }
 
 spinbutton.horizontal {
     border-image: linear-gradient(
-        45deg, @bg-widget, @bg-widget
+        45deg, @widget-bg, @widget-bg
     ) 1;
     border-width: 4px;
     color: @text-icon-col;
 }
 
 spinbutton.horizontal:backdrop, spinbutton.horizontal:disabled {
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 spinbutton.horizontal:focus {
     border-image: linear-gradient(
-        45deg, @grad1, @grad2
+        45deg, @grad_stop_1, @grad_stop_2
     ) 1;
     border-width: 4px;
     box-shadow: none;
 }
 
 entry {
-    background-color: @bg-widget;
+    background-color: @widget-bg;
     border-image: linear-gradient(
-        45deg, @bg-widget, @bg-widget
+        45deg, @widget-bg, @widget-bg
     ) 1;
     border-width: 4px;
     box-shadow: none;
@@ -102,7 +110,7 @@ entry {
 
 entry:focus {
     border-image: linear-gradient(
-        45deg, @grad1, @grad2
+        45deg, @grad_stop_1, @grad_stop_2
     ) 1;
     border-width: 4px;
 }
@@ -112,7 +120,7 @@ entry:backdrop {
 }
 
 entry:disabled {
-    background-color: @bg-widget;
+    background-color: @widget-bg;
 }
 
 #label_inactive {
@@ -126,11 +134,15 @@ radiobutton > radio {
 }
 
 radio {
-    border-color: @bg-widget;
+    border-color: @widget-bg;
     border-image: none;
     background-image: none;
-    background-color: @bg-widget;
-    color: @bg-widget;
+    background-color: @widget-bg;
+    color: @widget-bg;
+}
+
+radio:backdrop {
+    opacity: 0.6;
 }
 
 radio:checked {
@@ -138,37 +150,33 @@ radio:checked {
         45deg, #FF8AF3, #ff5d5a
     ); */
     background-image: linear-gradient(
-        45deg, @grad2, @grad1
+        45deg, @grad_stop_2, @grad_stop_1
     );
 }
 
 radio:not(:checked):hover {
     background-image: none;
-    background-color: @bg-widget-hov;
+    background-color: @widget-bg-hover;
 }
 
 radio:not(:checked):active {
     background-image: none;
-    background-color: @bg-widget-click;
+    background-color: @widget-bg-click;
 }
 
 scale > value {
     color: @text-icon-col;
 }
 
-scale:backdrop > value {
-    opacity: 0.6;
-}
-
 scale > contents > trough {
-    background-color: @bg-widget;
-    border-color: @bg-widget;
+    background-color: @widget-bg;
+    border-color: @widget-bg;
 }
 
 scale > contents > trough > highlight {
-    background-color: @bg-widget;
+    background-color: @widget-bg;
     background-image: linear-gradient(
-        90deg, @grad1, @grad2
+        90deg, @grad_stop_1, @grad_stop_2
     );
     border: none
 }
@@ -176,31 +184,55 @@ scale > contents > trough > highlight {
 scale > contents > trough > slider {
     background-image: none;
     box-shadow: none;
-    background-color: @bg-widget;
+    background-color: @widget-bg;
     border-image: linear-gradient(
-        90deg, @grad1, @grad2
+        90deg, @grad_stop_1, @grad_stop_2
     ) 1;
     border-width: 4px;
-    box-shadow: 10 0 20px @bg-widget;
+    box-shadow: 10 0 20px @widget-bg;
+}
+
+scale:backdrop {
+    opacity: 0.6;
 }
 
 scale > contents > trough > slider:hover {
-    background-color: @bg-widget-hov;
+    background-color: @widget-bg-hover;
 }
 
 scale > contents > trough > slider:active {
-    background-color: @bg-widget-click;
+    background-color: @widget-bg-click;
 }
 
-combobox > box.linked > button.combo {
-    background-color: red;
+/* combobox > box.linked > window.popup {
+    background-color: @widget-bg;
+    color: @text-icon-col;
+} */
+
+menuitem {
+    background-color: @widget-bg;
+    color: @text-icon-col;
+}
+
+menuitem:hover {
+    background-color: @widget-bg-hover;
+}
+
+combobox > window > menu {
+    background-color: @widget-bg;
+}
+
+separator {
+    background-image: linear-gradient(
+        90deg, @grad_stop_1, @grad_stop_2
+    );
 }
 
 window {
     /* background-image:linear-gradient(
         45deg, #FFD4DB
     ); */
-    background-color: @bg-col;
+    background-color: @window-bg;
     /* background-color: #FFE5D6; */
 }
 
@@ -209,5 +241,4 @@ window {
     text-shadow: none;
     box-shadow: none;
     -gtk-icon-shadow: none;
-    color: @text-icon-col;
 }

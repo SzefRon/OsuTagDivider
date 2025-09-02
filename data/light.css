@@ -1,28 +1,32 @@
-@define-color grad1 #FF8AF3;
-@define-color grad2 #ff5d5a;
+@define-color grad_stop_1 #FF8AF3;
+@define-color grad_stop_2 #ff5d5a;
 
-@define-color text-main #fff7f6;
-@define-color text-shadow #ff625f;
+@define-color panel-text #fff7f6;
+@define-color panel-text-shadow #ff625f;
 
-@define-color bg-widget #ffffff;
-@define-color bg-widget-hov #fff5f6;
-@define-color bg-widget-click #ffecef;
+@define-color widget-bg #ffffff;
+@define-color widget-bg-hover #fff5f6;
+@define-color widget-bg-click #ffecef;
 
-@define-color text-col #2E3436;
+@define-color text-icon-col #2E3436;
 
-@define-color bg-col #FFD4DB;
+@define-color window-bg #FFD4DB;
 
 label {
     text-shadow: none;
-    color: @text-col;
+    color: @text-icon-col;
+}
+
+label:backdrop {
+    opacity: 0.6;
 }
 
 #main_frame > border {
     border-image: linear-gradient(
         -225deg, 
-        @grad1, @grad2,
-        @grad1, @grad2,
-        @grad1, @grad2
+        @grad_stop_1, @grad_stop_2,
+        @grad_stop_1, @grad_stop_2,
+        @grad_stop_1, @grad_stop_2
         ) 1;
     border-width: 8px;
 }
@@ -30,86 +34,83 @@ label {
 #main_frame > label, #fancy_text {
     font-size: large;
     font-weight: bold;
-    color: @text-main;
-    text-shadow: @text-shadow 0px 0px 3px,
-    @text-shadow 0px 0px 3px,
-    @text-shadow 0px 0px 3px,
-    @text-shadow 0px 0px 3px,
-    @text-shadow 0px 0px 3px;
+    color: @panel-text;
+    text-shadow: @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px;
 }
 
 #main_frame > label:backdrop {
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 frame > border {
     border-image: linear-gradient(
-        45deg, @grad1, @grad2
+        45deg, @grad_stop_1, @grad_stop_2
     ) 1;
     border-width: 4px;
-}
-
-filechooserbutton > button {
-    background-color: @bg-widget;
-}
-
-filechooserbutton.file > button {
-    background-color: @bg-widget;
 }
 
 button {
     background-image: none;
-    background-color: @bg-widget;
+    background-color: @widget-bg;
     border-image: linear-gradient(
-        45deg, @grad1, @grad2
+        45deg, @grad_stop_1, @grad_stop_2
     ) 1;
     border-width: 4px;
     border-radius: 0px;
     box-shadow: none;
+    color: @text-icon-col;
 }
 
 button:hover {
-    background-color: @bg-widget-hov;
+    background-color: @widget-bg-hover;
 }
 
 button:active {
-    background-color: @bg-widget-click;
+    background-color: @widget-bg-click;
+}
+
+button:backdrop {
+    opacity: 0.6;
 }
 
 spinbutton.horizontal {
     border-image: linear-gradient(
-        45deg, @bg-widget, @bg-widget
+        45deg, @widget-bg, @widget-bg
     ) 1;
     border-width: 4px;
-    color: @text-col;
+    color: @text-icon-col;
 }
 
 spinbutton.horizontal:backdrop, spinbutton.horizontal:disabled {
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 spinbutton.horizontal:focus {
     border-image: linear-gradient(
-        45deg, @grad1, @grad2
+        45deg, @grad_stop_1, @grad_stop_2
     ) 1;
     border-width: 4px;
     box-shadow: none;
 }
 
 entry {
-    background-color: @bg-widget;
+    background-color: @widget-bg;
     border-image: linear-gradient(
-        45deg, @bg-widget, @bg-widget
+        45deg, @widget-bg, @widget-bg
     ) 1;
     border-width: 4px;
     box-shadow: none;
-    color: @text-col;
+    color: @text-icon-col;
     text-shadow: none;
 }
 
 entry:focus {
     border-image: linear-gradient(
-        45deg, @grad1, @grad2
+        45deg, @grad_stop_1, @grad_stop_2
     ) 1;
     border-width: 4px;
 }
@@ -119,7 +120,7 @@ entry:backdrop {
 }
 
 entry:disabled {
-    background-color: @bg-widget;
+    background-color: @widget-bg;
 }
 
 #label_inactive {
@@ -133,10 +134,15 @@ radiobutton > radio {
 }
 
 radio {
-    border-color: @bg-widget;
+    border-color: @widget-bg;
     border-image: none;
     background-image: none;
-    background-color: @bg-widget;
+    background-color: @widget-bg;
+    color: @widget-bg;
+}
+
+radio:backdrop {
+    opacity: 0.6;
 }
 
 radio:checked {
@@ -144,37 +150,33 @@ radio:checked {
         45deg, #FF8AF3, #ff5d5a
     ); */
     background-image: linear-gradient(
-        45deg, @grad2, @grad1
+        45deg, @grad_stop_2, @grad_stop_1
     );
 }
 
 radio:not(:checked):hover {
     background-image: none;
-    background-color: @bg-widget-hov;
+    background-color: @widget-bg-hover;
 }
 
 radio:not(:checked):active {
     background-image: none;
-    background-color: @bg-widget-click;
+    background-color: @widget-bg-click;
 }
 
 scale > value {
-    color: @text-col;
-}
-
-scale:backdrop > value {
-    opacity: 0.6;
+    color: @text-icon-col;
 }
 
 scale > contents > trough {
-    background-color: @bg-widget;
-    border-color: @bg-widget;
+    background-color: @widget-bg;
+    border-color: @widget-bg;
 }
 
 scale > contents > trough > highlight {
-    background-color: @bg-widget;
+    background-color: @widget-bg;
     background-image: linear-gradient(
-        90deg, @grad1, @grad2
+        90deg, @grad_stop_1, @grad_stop_2
     );
     border: none
 }
@@ -182,27 +184,55 @@ scale > contents > trough > highlight {
 scale > contents > trough > slider {
     background-image: none;
     box-shadow: none;
-    background-color: @bg-widget;
+    background-color: @widget-bg;
     border-image: linear-gradient(
-        90deg, @grad1, @grad2
+        90deg, @grad_stop_1, @grad_stop_2
     ) 1;
     border-width: 4px;
-    box-shadow: 10 0 20px @bg-widget;
+    box-shadow: 10 0 20px @widget-bg;
+}
+
+scale:backdrop {
+    opacity: 0.6;
 }
 
 scale > contents > trough > slider:hover {
-    background-color: @bg-widget-hov;
+    background-color: @widget-bg-hover;
 }
 
 scale > contents > trough > slider:active {
-    background-color: @bg-widget-click;
+    background-color: @widget-bg-click;
+}
+
+/* combobox > box.linked > window.popup {
+    background-color: @widget-bg;
+    color: @text-icon-col;
+} */
+
+menuitem {
+    background-color: @widget-bg;
+    color: @text-icon-col;
+}
+
+menuitem:hover {
+    background-color: @widget-bg-hover;
+}
+
+combobox > window > menu {
+    background-color: @widget-bg;
+}
+
+separator {
+    background-image: linear-gradient(
+        90deg, @grad_stop_1, @grad_stop_2
+    );
 }
 
 window {
     /* background-image:linear-gradient(
         45deg, #FFD4DB
     ); */
-    background-color: @bg-col;
+    background-color: @window-bg;
     /* background-color: #FFE5D6; */
 }
 
