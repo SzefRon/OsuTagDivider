@@ -38,7 +38,9 @@ void MainWindow::try_load_beatmap()
 
 MainWindow::MainWindow()
     : box(Gtk::ORIENTATION_VERTICAL, 10),
-      generate_button("The OwO button that generates the maps")
+      generate_button("The OwO button that generates the maps"),
+      theme_combo(false),
+      theme_label("Theme")
 {
     auto css_provider = Gtk::CssProvider::create();
     css_provider->load_from_path("data/style.css");
@@ -49,7 +51,7 @@ MainWindow::MainWindow()
         GTK_STYLE_PROVIDER_PRIORITY_APPLICATION
     );
 
-    generate_button.set_name("generate_button");
+    theme_label.set_name("fancy_text");
 
     set_default_size(600, 600);
     // set_resizable(false);
@@ -62,8 +64,22 @@ MainWindow::MainWindow()
     box.pack_start(difficulty_settings_panel);
     box.pack_start(tag_division_settings_panel);
     
+    bottom_grid.set_row_spacing(10);
+    bottom_grid.set_column_spacing(10);
+
+    bottom_grid.attach(generate_button, 0, 0, 1, 2);
+    bottom_grid.attach(theme_label, 1, 0);
+    bottom_grid.attach(theme_combo, 1, 1);
+    box.pack_start(bottom_grid, Gtk::PACK_SHRINK);
+
     generate_button.set_size_request(-1, 70);
-    box.pack_start(generate_button, Gtk::PACK_SHRINK);
+    generate_button.set_hexpand(true);
+
+    theme_combo.set_size_request(100, -1);
+
+    theme_combo.append("Light");
+    theme_combo.append("Dark");
+    theme_combo.set_active_text("Theme");
 
     // --- SIGNALS ---
 

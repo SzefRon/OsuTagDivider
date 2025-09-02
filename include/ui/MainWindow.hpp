@@ -3,6 +3,8 @@
 #include <gtkmm/applicationwindow.h>
 #include <gtkmm/box.h>
 #include <gtkmm/button.h>
+#include <gtkmm/comboboxtext.h>
+#include <gtkmm/grid.h>
 #include <gtkmm/messagedialog.h>
 #include <glibmm/dispatcher.h>
 #include <gtkmm/cssprovider.h>
@@ -27,7 +29,10 @@ private:
     DifficultySettingsPanel difficulty_settings_panel;
     TagDivisionSettingsPanel tag_division_settings_panel;
 
+    Gtk::Grid bottom_grid;
     Gtk::Button generate_button;
+    Gtk::Label theme_label;
+    Gtk::ComboBoxText theme_combo;
 
     std::optional<Beatmap> current_beatmap;
 

@@ -1,22 +1,36 @@
+@define-color grad1 #FF8AF3;
+@define-color grad2 #ff5d5a;
+
+@define-color text-main #fff7f6;
+@define-color text-shadow #ff625f;
+
+@define-color bg-widget #ffffff;
+@define-color bg-widget-hov #fff5f6;
+@define-color bg-widget-click #ffecef;
+
+@define-color text-col #2E3436;
+
+@define-color bg-col #FFD4DB;
+
 #main_frame > border {
     border-image: linear-gradient(
         -225deg, 
-        #FF8AF3,#ff5d5a,
-        #FF8AF3,#ff5d5a,
-        #FF8AF3,#ff5d5a
+        @grad1, @grad2,
+        @grad1, @grad2,
+        @grad1, @grad2
         ) 1;
     border-width: 8px;
 }
 
-#main_frame > label {
+#main_frame > label, #fancy_text {
     font-size: large;
     font-weight: bold;
-    color: #fff7f6;
-    text-shadow: #ff625f 0px 0px 3px,
-    #ff625f 0px 0px 3px,
-    #ff625f 0px 0px 3px,
-    #ff625f 0px 0px 3px,
-    #ff625f 0px 0px 3px;
+    color: @text-main;
+    text-shadow: @text-shadow 0px 0px 3px,
+    @text-shadow 0px 0px 3px,
+    @text-shadow 0px 0px 3px,
+    @text-shadow 0px 0px 3px,
+    @text-shadow 0px 0px 3px;
 }
 
 #main_frame > label:backdrop {
@@ -25,20 +39,20 @@
 
 frame > border {
     border-image: linear-gradient(
-        45deg, #FF8AF3, #ff5d5a
+        45deg, @grad1, @grad2
     ) 1;
     border-width: 4px;
 }
 
 filechooserbutton > button {
-    background-color: white;
+    background-color: @bg-widget;
 }
 
 button {
     background-image: none;
-    background-color: #ffffff;
+    background-color: @bg-widget;
     border-image: linear-gradient(
-        45deg, #FF8AF3, #ff5d5a
+        45deg, @grad1, @grad2
     ) 1;
     border-width: 4px;
     border-radius: 0px;
@@ -46,11 +60,11 @@ button {
 }
 
 button:hover {
-    background-color: #fff5f6;
+    background-color: @bg-widget-hov;
 }
 
 button:active {
-    background-color: #ffecef;
+    background-color: @bg-widget-click;
 }
 
 spinbutton.horizontal {
@@ -66,7 +80,7 @@ spinbutton.horizontal:backdrop {
 
 spinbutton.horizontal:focus {
     border-image: linear-gradient(
-        45deg, #FF8AF3, #ff5d5a
+        45deg, @grad1, @grad2
     ) 1;
     border-width: 4px;
     box-shadow: none;
@@ -82,7 +96,7 @@ entry {
 
 entry:focus {
     border-image: linear-gradient(
-        45deg, #FF8AF3, #ff5d5a
+        45deg, @grad1, @grad2
     ) 1;
     border-width: 4px;
 }
@@ -92,7 +106,7 @@ entry:backdrop {
 }
 
 entry:disabled {
-    background-color: #ffffff;
+    background-color: @bg-widget;
 }
 
 #label_inactive {
@@ -110,22 +124,22 @@ radio:checked {
         45deg, #FF8AF3, #ff5d5a
     ); */
     background-image: linear-gradient(
-        45deg, #ff5d5a, #FF8AF3
+        45deg, @grad2, @grad1
     );
 }
 
 radio:not(:checked):hover {
     background-image: none;
-    background-color: #fff5f6;
+    background-color: @bg-widget-hov;
 }
 
 radio:not(:checked):active {
     background-image: none;
-    background-color: #ffecef;
+    background-color: @bg-widget-click;
 }
 
 scale > value {
-    color: #2E3436;
+    color: @text-col;
 }
 
 scale:backdrop > value {
@@ -133,14 +147,14 @@ scale:backdrop > value {
 }
 
 scale > contents > trough {
-    background-color: #ffffff;
-    border-color: #ffffff;
+    background-color: @bg-widget;
+    border-color: @bg-widget;
 }
 
 scale > contents > trough > highlight {
-    background-color: #ffffff;
+    background-color: @bg-widget;
     background-image: linear-gradient(
-        90deg, #FF8AF3, #ff5d5a
+        90deg, @grad1, @grad2
     );
     border: none
 }
@@ -148,27 +162,27 @@ scale > contents > trough > highlight {
 scale > contents > trough > slider {
     background-image: none;
     box-shadow: none;
-    background-color: #ffffff;
+    background-color: @bg-widget;
     border-image: linear-gradient(
-        90deg, #FF8AF3, #ff5d5a
+        90deg, @grad1, @grad2
     ) 1;
     border-width: 4px;
-    box-shadow: 10 0 20px #ffffff;
+    box-shadow: 10 0 20px @bg-widget;
 }
 
 scale > contents > trough > slider:hover {
-    background-color: #fff5f6;
+    background-color: @bg-widget-hov;
 }
 
 scale > contents > trough > slider:active {
-    background-color: #ffecef;
+    background-color: @bg-widget-click;
 }
 
 window {
     /* background-image:linear-gradient(
         45deg, #FFD4DB
     ); */
-    background-color: #FFD4DB;
+    background-color: @bg-col;
     /* background-color: #FFE5D6; */
 }
 
