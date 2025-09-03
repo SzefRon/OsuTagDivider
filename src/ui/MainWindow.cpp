@@ -38,6 +38,15 @@ void MainWindow::try_load_beatmap()
 
 void MainWindow::load_config_theme()
 {
+    if (css_provider.get()) {
+        Gtk::StyleContext::remove_provider_for_screen(
+            Gdk::Screen::get_default(),
+            css_provider
+        );
+    }
+
+    if (config_manager.get_config().selected_theme == "default") return;
+
     std::filesystem::path theme_path = "data";
     theme_path /= config_manager.get_config().selected_theme + ".css";
 
@@ -87,6 +96,7 @@ MainWindow::MainWindow()
     for (const auto &theme : config_manager.get_themes()) {
         theme_combo.append(theme);
     }
+    theme_combo.append("default");
 
     theme_combo.set_active_text(config_manager.get_config().selected_theme);
 

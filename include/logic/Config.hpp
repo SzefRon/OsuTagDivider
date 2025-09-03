@@ -5,6 +5,6 @@
 
 struct Config
 {
-    std::string selected_theme = "light";
+    std::string selected_theme = "default";
     std::filesystem::path default_path = "-";
 };
