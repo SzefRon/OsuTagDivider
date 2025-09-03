@@ -13,7 +13,6 @@ DifficultySettingsPanel::DifficultySettingsPanel()
     set_name("main_frame");
     get_label_widget()->set_margin_start(10);
     get_label_widget()->set_margin_end(10);
-    get_label_widget()->set_margin_bottom(5);
     get_label_widget()->set_margin_top(5);
 
     grid.set_border_width(10);

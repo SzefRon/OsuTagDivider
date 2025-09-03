@@ -1,7 +1,7 @@
 #include "ui/BeatmapPathsPanel.hpp"
 
 BeatmapPathsPanel::BeatmapPathsPanel()
-    : Gtk::Frame("Beatmap Paths"),
+    : Gtk::Frame("Beatmap paths"),
       input_file_label("Input beatmap file"),
       input_file_picker("Input beatmap file"),
       output_folder_label("Output folder"),
@@ -12,7 +12,6 @@ BeatmapPathsPanel::BeatmapPathsPanel()
     set_name("main_frame");
     get_label_widget()->set_margin_start(10);
     get_label_widget()->set_margin_end(10);
-    get_label_widget()->set_margin_bottom(5);
     get_label_widget()->set_margin_top(5);
 
     auto osu_file_filter = Gtk::FileFilter::create();
