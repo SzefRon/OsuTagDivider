@@ -1,16 +1,16 @@
-@define-color grad_stop_1 #FF8AF3;
-@define-color grad_stop_2 #ff5d5a;
+@define-color grad_stop_1 #440f76;
+@define-color grad_stop_2 #500f75;
 
-@define-color panel-text #fff7f6;
-@define-color panel-text-shadow #ff625f;
+@define-color panel-text #d7c8e4;
+@define-color panel-text-shadow transparent;
 
-@define-color widget-bg #ffffff;
-@define-color widget-bg-hover #ffecef;
-@define-color widget-bg-click #FFD5C4;
+@define-color widget-bg #2c1650;
+@define-color widget-bg-hover #3b1b6f;
+@define-color widget-bg-click #4e278b;
 
-@define-color text-icon-col #2E3436;
+@define-color text-icon-col #e0d9ed;
 
-@define-color window-bg #FFD4DB;
+@define-color window-bg #190f29;
 
 label {
     text-shadow: none;

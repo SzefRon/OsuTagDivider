@@ -1,16 +1,16 @@
-@define-color grad_stop_1 #000000;
-@define-color grad_stop_2 #000000;
+@define-color grad_stop_1 #00C2A8;
+@define-color grad_stop_2 #7FB5C7;
 
-@define-color panel-text #000000;
-@define-color panel-text-shadow #000000;
+@define-color panel-text #00C2A8;
+@define-color panel-text-shadow transparent;
 
-@define-color widget-bg #000000;
-@define-color widget-bg-hover #000000;
-@define-color widget-bg-click #000000;
+@define-color widget-bg #1c2129;
+@define-color widget-bg-hover #464E5F;
+@define-color widget-bg-click #F7E28A;
 
-@define-color text-icon-col #000000;
+@define-color text-icon-col #E0E5EA;
 
-@define-color window-bg #000000;
+@define-color window-bg #0D1117;
 
 label {
     text-shadow: none;
@@ -32,7 +32,7 @@ label:backdrop {
 }
 
 #main_frame > label, #fancy_text {
-    font-size: large;
+    font-size: 20px;
     font-weight: bold;
     color: @panel-text;
     text-shadow: @panel-text-shadow 0px 0px 3px,
@@ -146,9 +146,6 @@ radio:backdrop {
 }
 
 radio:checked {
-    /* background-image: linear-gradient(
-        45deg, #FF8AF3, #ff5d5a
-    ); */
     background-image: linear-gradient(
         45deg, @grad_stop_2, @grad_stop_1
     );
@@ -192,7 +189,7 @@ scale > contents > trough > slider {
     box-shadow: 10 0 20px @widget-bg;
 }
 
-scale:backdrop {
+scale:backdrop, scale:disabled {
     opacity: 0.6;
 }
 
@@ -203,11 +200,6 @@ scale > contents > trough > slider:hover {
 scale > contents > trough > slider:active {
     background-color: @widget-bg-click;
 }
-
-/* combobox > box.linked > window.popup {
-    background-color: @widget-bg;
-    color: @text-icon-col;
-} */
 
 menuitem {
     background-color: @widget-bg;
@@ -228,12 +220,23 @@ separator {
     );
 }
 
-window {
-    /* background-image:linear-gradient(
-        45deg, #FFD4DB
-    ); */
+tooltip {
+    background-color: @widget-bg;
+    color: @text-icon-col;
+    opacity: 0.9;
+}
+
+messagedialog {
     background-color: @window-bg;
-    /* background-color: #FFE5D6; */
+    text-shadow: @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px,
+    @panel-text-shadow 0px 0px 3px;
+}
+
+window {
+    background-color: @window-bg;
 }
 
 * {
