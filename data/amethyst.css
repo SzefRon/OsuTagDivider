@@ -235,6 +235,65 @@ messagedialog {
     @panel-text-shadow 0px 0px 3px;
 }
 
+headerbar {
+    background-color: @widget-bg;
+    background-image: none;
+    border-image: linear-gradient(
+        90deg, @grad_stop_1, @grad_stop_2
+    ) 1;
+}
+
+actionbar {
+    background-color: @widget-bg;
+}
+
+actionbar > revealer > box {
+    border-image: linear-gradient(
+        90deg, @grad_stop_1, @grad_stop_2
+    ) 1;
+}
+
+placessidebar {
+    background-color: @window-bg;
+}
+
+image {
+    color: @text-icon-col;
+}
+
+#pathbarbox {
+    background-color: @widget-bg;
+    border-image: linear-gradient(
+        90deg, @grad_stop_1, @grad_stop_2
+    ) 1;
+}
+
+stack {
+    background-color: @window-bg;
+}
+
+treeview {
+    background-color: @window-bg;
+    color: @text-icon-col;
+}
+
+treeview:selected {
+    background-color: @widget-bg-click;
+}
+
+list {
+    background-color: @window-bg;
+    color: @text-icon-col;
+}
+
+treeview button {
+    border-width: 1px;
+}
+
+list row:selected {
+    background-color: @widget-bg-click;
+}
+
 window {
     background-color: @window-bg;
 }
