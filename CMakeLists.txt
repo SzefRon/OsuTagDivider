@@ -20,6 +20,7 @@ FetchContent_MakeAvailable(googletest)
 file(GLOB_RECURSE TEST_SOURCES ${CMAKE_SOURCE_DIR}/tests/*.cpp)
 file(COPY ${CMAKE_SOURCE_DIR}/tests/test_data DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY ${CMAKE_SOURCE_DIR}/data DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${CMAKE_SOURCE_DIR}/data DESTINATION ${CMAKE_BINARY_DIR}/AppDir/usr/share/OsuTagDivider)
 
 include_directories(${GTK3_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
 link_directories(${GTK3_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})

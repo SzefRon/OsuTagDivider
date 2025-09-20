@@ -1,0 +1,15 @@
+@define-color grad_stop_1 #00C2A8;
+@define-color grad_stop_2 #7FB5C7;
+
+@define-color panel-text #00C2A8;
+@define-color panel-text-shadow transparent;
+
+@define-color widget-bg #1c2129;
+@define-color widget-bg-hover #464E5F;
+@define-color widget-bg-click #16182e;
+
+@define-color text-icon-col #E0E5EA;
+
+@define-color window-bg #0D1117;
+
+@import url("../default_theme.css");

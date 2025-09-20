@@ -47,7 +47,7 @@ void MainWindow::load_config_theme()
 
     if (config_manager.get_config().selected_theme == "default") return;
 
-    std::filesystem::path theme_path = "data";
+    std::filesystem::path theme_path = config_manager.get_themes_path();
     theme_path /= config_manager.get_config().selected_theme + ".css";
 
     css_provider = Gtk::CssProvider::create();
