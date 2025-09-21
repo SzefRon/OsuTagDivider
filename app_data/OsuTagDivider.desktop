@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=OsuTagDivider
+Exec=OsuTagDivider
+Icon=icon-4
+Comment=Divide osu! beatmaps into tag co-op difficulties!
+Categories=Utility;
+Terminal=false
