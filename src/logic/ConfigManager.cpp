@@ -4,12 +4,9 @@ std::filesystem::path ConfigManager::get_default_paths()
 {
     std::filesystem::path default_folder;
     #ifdef _WIN32
-        auto local_path = std::getenv("localappdata");
-        if (local_path) {
-            default_folder = local_path;
-            default_folder = default_folder / "osu!" / "Songs";
-        }
-        else return ".";
+        default_folder = std::filesystem::temp_directory_path().parent_path().parent_path();
+        default_folder = default_folder / "osu!" / "Songs";
+        if (!std::filesystem::exists(default_folder)) return ".";
     #endif
     #ifdef __linux__
         auto home_path = std::getenv("HOME");
