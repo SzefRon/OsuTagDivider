@@ -21,10 +21,10 @@ DifficultySettingsPanel::DifficultySettingsPanel()
 
     difficulty_name_label.set_justify(Gtk::JUSTIFY_CENTER);
 
-    hp_scale.set_range(0.0, 10.0);
-    cs_scale.set_range(0.0, 10.0);
-    od_scale.set_range(0.0, 10.0);
-    ar_scale.set_range(0.0, 10.0);
+    hp_scale.set_adjustment(Gtk::Adjustment::create(0.0, 0.0, 10.0, 0.1));
+    cs_scale.set_adjustment(Gtk::Adjustment::create(0.0, 0.0, 10.0, 0.1));
+    od_scale.set_adjustment(Gtk::Adjustment::create(0.0, 0.0, 10.0, 0.1));
+    ar_scale.set_adjustment(Gtk::Adjustment::create(0.0, 0.0, 10.0, 0.1));
 
     ar_scale.set_tooltip_text("Old maps have AR tied with OD");
 
