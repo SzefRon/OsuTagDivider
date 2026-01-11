@@ -18,35 +18,37 @@ A tool that divides osu beatmaps in tag co-op style, made to help create videos 
 ## Beatmap paths panel
 <img src="./readme_data/paths.png" width="500">
 
-- You start by selecting what beatmap (.osu file) you want to divide using the `Input beatmap file` picker.
+- You start by selecting what beatmap difficulty (.osu file) you want to divide using the `Input beatmap file` picker.
 
-- If your beatmap file is invalid in any way, a message box will pop up with the error message.
+- If the file is invalid in any way, a message box will pop up with an error message.
 
-- After you select a beatmap, the Output folder will be automatically set to the same directory.
+- Once the beatmap difficulty successfully loads, the Output folder will be automatically set to the same directory and the next panel will be populated with the difficulty's data.
 
 ## Difficulty settings panel
 <img src="./readme_data/difficulty_settings.png" width="500">
 
-- After your beatmap successfully loads, this panel will be initialized with the beatmap's data.
+- The name of each difficulty this tool generates will be in the format:
 
-- For each difficulty this tool generates, the difficulty name will be taken from the `Difficulty Name` label with an appended index, to distinguish each difficulty.
+`Difficulty name label value` `Number`
+
+- The number appended at the end of each difficulty name represents which player this difficulty is meant for.
 
 - You can fetch original values of the loaded beatmap, by pressing the `Default values` button.
 
 ## Tag division settings
 <img src="./readme_data/tag_division_settings.png" width="500">
 
-- The `Number of players` spinner determines how many difficulties will be generated.
+- The value of the `Number of players` spinner determines how many difficulties will be generated.
 
-- The `Division mode` box lets you decide what algorithm is used to divide your beatmap:
-    1. `Every new combo`: Notes will be passed to the next player whenever a new combo appears. (Useful for classic TAG maps or for creating your own division with a custom difficulty)
+- The `Division mode` box lets you decide what algorithm is used to divide the loaded beatmap:
+    1. `Every new combo`: Notes will be passed to the next player whenever a new combo appears. (Useful for classic TAG maps or your own divisions with the help of a custom difficulty)
 
     2. `Every N notes`: Notes will be passed to the next player every `N` notes. You can select the `N` value with the `N amount` spinner. (Useful for impossible maps)
 
 ## Generate button
 <img src="./readme_data/generate_button.png" width="500">
 
-- After you're done configuring the tool, you can press this big and ominous button!
+- After you're done configuring the tool, you can press this big and ominous button to generate the beatmap files!
 
 - Afterwards, a message box will appear indicating if generation was successful or not.
 
@@ -54,25 +56,25 @@ A tool that divides osu beatmaps in tag co-op style, made to help create videos 
 
 The `data` folder contains information used by the tool in a human readable format.
 
-- On the windows portable build the `data` folder is located inside the `bin` folder in the same location as the executable.
+- `Windows portable build`: The `data` folder is located inside the `bin` folder in the same location as the executable.
 
-- On the linux build the first time you run the tool, an `OsuTagDivider` folder will be created in the `~/.local/share` directory. This is where the `data` folder will be located.
+- `Linux build`: the first time you run the tool, an `OsuTagDivider` folder will be created inside the `~/.local/share` directory. This is where the `data` folder will be located.
 
 ## Config
 
 Inside the `data` folder a `config.ini` file is located which will contain two fields:
 
 - `selected_theme`: the currently selected theme. Default: `light`
-- `default_path`: the folder the `Input beatmap file` picker will default to when selecting a file. Default: `-` (the tool will try fetching the default osu! location and replace the dash)
+- `default_path`: the folder the `Input beatmap file` picker will default to when selecting a file. Default: `-` (the tool will replace the dash with the default osu! location if it exists)
 
 ## Theming
 <img src="./readme_data/themes.png" width="100">
 
 - This tool supports theming and comes with a few predefined color presets.
 
-- The default theme can be accessed in the `data/themes` folder. Color presets for that theme are located in `data/themes/color`.
+- The default theme can be accessed inside the `data/themes` folder. Color presets for that theme are located in `data/themes/color`.
 
-- You can create a custom color preset by adding a new `.css` file to the `data/themes/color` folder. The file MUST include the same color definitions as the existing presets, but you can change the values. The tool will automatically detect new presets the next time it runs.
+- You can create a custom color preset by adding a new `.css` file inside the `data/themes/color` folder. The file MUST include the same color definitions as the existing presets; you are only allowed to change the color values. The tool will automatically detect new presets the next time it runs.
 
 # <div align="center">Build instructions</div>
 
