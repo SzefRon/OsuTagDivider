@@ -66,6 +66,7 @@ MainWindow::MainWindow()
       theme_combo(false),
       theme_label("Theme")
 {
+    std::setlocale(LC_NUMERIC, "C");
     load_config_theme();
 
     theme_label.set_name("fancy_text");
